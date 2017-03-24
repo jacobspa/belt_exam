@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Email Validation!</title>
+  </head>
+  <body>
+    <h1>Login</h1>
+    <form action="{% url 'belt:login' %}" method="POST">
+      {% csrf_token %}
+      Email: <input type="text" name="html_email" value=""><br><br>
+      Password: <input type="Password" name="html_password" value=""><br><br>
+      <input type="submit" name="submit" value="Login"><br>
+    </form>
+    <hr>
+    {% for m in messages %}
+    <p>{{m}}</p><br>
+    {% endfor %}
+
+    <br>
+    <h1>Register</h1>
+    <form action="{% url 'belt:register'%}" method="POST">
+      {% csrf_token %}
+      Email: <input type="text" name="html_email" value=""><br><br>
+      Name: <input type="text" name="html_name" value=""><br><br>
+      Alias: <input type="text" name="html_alias" value=""><br><br>
+      Password: <input type="password" name="html_password" value=""><br><br>
+      Confirm Password: <input type="password" name="html_confirm" value=""><br><br>
+      Date of Birth: <input type="date" name="html_date" value="">
+      <input type="submit" name="sumbmit" value="register">
+      <br><br>
+      <hr>
+    </form>
+  </body>
+</html>

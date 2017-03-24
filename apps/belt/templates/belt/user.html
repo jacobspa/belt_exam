@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quotes</title>
+  </head>
+  <body>
+    <a href="{% url 'belt:home' %}">Dashboard</a>
+    <a href="{%url 'belt:logout'%}">Logout</a><br><br>
+    Posts by {{user.name}}<br>
+    count:{{count}}<hr>
+    {% for p in posts%}
+    <p>{{p.author}}: "{{p.text}}"</p>
+    <hr>
+    {% endfor %}
+  </body>
+</html>

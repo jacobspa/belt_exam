@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href="{%url 'belt:logout'%}">Logout</a><br><br>
+    <h1> Welcome, {{user.name}}
+    <h2>Quotable Quotes</h2>
+    {% for q in quotes %}
+    <p>{{q.author}}: "{{q.text}}"<p>
+    <p>Posted by <a href="{% url 'belt:user' user_id=q.poster.id %}">{{q.poster.name}}</a></p>
+    <a href="{% url 'belt:process' quotes_id=q.id %}">Add to My List</a>
+    <hr>
+    {% endfor %}
+    <h2>Your Favorites</h2>
+    {% for l in lists %}
+    <p>{{l.quotes.author}}: {{l.quotes.text}}</p>
+    <p>posted by <a href="{% url 'belt:user' user_id=l.quotes.poster.id %}">{{l.quotes.poster.name}}</a></p>
+    <a href="{% url 'belt:remove' quotes_id=l.quotes.id %}">Remove From My List</a><hr>
+    {% endfor %}
+    <h2>Contribute a Quote:</h2>
+    {% for m in messages %}
+    <p>{{m}}</p><br>
+    {% endfor %}
+    <form action="{% url 'belt:create' %}" method ='POST'>
+      {% csrf_token %}
+      Quoted By: <input type="text" name="html_author" value=""><br>
+      Message <input type="textarea" name="html_quote" value=""><br><br>
+      <input type="submit" name="submit" value="Submit!">
+    </form>
+  </body>
+</html>
